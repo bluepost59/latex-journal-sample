@@ -30,6 +30,7 @@ jobs:
           sudo apt update
           sudo apt upgrade
           sudo apt install perl
+          
           mkdir downloads 
           cd downloads 
           pwd
@@ -38,5 +39,9 @@ jobs:
           cd install-tl-???????? 
           sudo perl ./install-tl --scheme=small --no-interaction 
           sudo /usr/local/texlive/????/bin/x86_64-linux/tlmgr install collection-langcjk collection-langjapanese
+      - name: build document
+        run: |
+          /usr/local/texlive/????/bin/x86_64-linux/platex test.tex
+          /usr/local/texlive/????/bin/x86_64-linux/dvipdfmx test.dvi
           
 
