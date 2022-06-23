@@ -6,7 +6,7 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main", "github-actions" ]
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
@@ -25,11 +25,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: build TeXLive 2022
+      - name: Build TeXLive 2022
         run: |
           sudo apt update
           sudo apt upgrade
           sudo apt install perl
+          
           mkdir downloads 
           cd downloads 
           pwd
@@ -38,5 +39,33 @@ jobs:
           cd install-tl-???????? 
           sudo perl ./install-tl --scheme=small --no-interaction 
           sudo /usr/local/texlive/????/bin/x86_64-linux/tlmgr install collection-langcjk collection-langjapanese
-          
 
+      - name: Build Document
+        run: |
+          /usr/local/texlive/????/bin/x86_64-linux/platex test.tex
+          /usr/local/texlive/????/bin/x86_64-linux/dvipdfmx test.dvi
+          
+      - name: Release PDF
+        id: release_pdf
+        uses: actions/create-release@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: PDF
+          release_name: Release ${{ github.ref }}
+          body: |
+            Changes in this Release
+            - First Change
+            - Second Change
+          draft: false
+          prerelease: false
+
+      - name: Upload Release 
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.release_pdf.outputs.upload_url }}
+          asset_path: ./test.pdf
+          asset_name: test.pdf
+          asset_content_type: application/pdf
