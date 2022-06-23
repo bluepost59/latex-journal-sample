@@ -6,7 +6,7 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: [ "main", "github-actions" ]
   pull_request:
     branches: [ "main" ]
 
@@ -25,12 +25,18 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: build TeXLive 2022
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          sudo apt update
+          sudo apt upgrade
+          sudo apt install perl
+          mkdir downloads 
+          cd downloads 
+          pwd
+          wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz 
+          zcat install-tl-unx.tar.gz | tar xf - 
+          cd install-tl-???????? 
+          sudo perl ./install-tl --scheme=small --no-interaction 
+          sudo /usr/local/texlive/????/bin/x86_64-linux/tlmgr install collection-langcjk collection-langjapanese
+          
+
