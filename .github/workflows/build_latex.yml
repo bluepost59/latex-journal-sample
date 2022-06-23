@@ -23,13 +23,6 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Set current datetime as env variable
-        env:
-          TZ: 'Asia/Tokyo' # タイムゾーン指定
-        run: echo "CURRENT_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
-
-      - name: Show curren
-
       - uses: actions/checkout@v3
 
       - name: Build TeXLive 2022
@@ -59,7 +52,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: PDF
-          release_name: Release ${{ env.CURRENT_DATE }}
+          release_name: Release 
           body: |
             Changes in this Release
             - First Change
