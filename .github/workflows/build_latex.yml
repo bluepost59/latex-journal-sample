@@ -25,9 +25,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Run a multi-line script
+      - name: build TeXLive 2022
         run: |
-          sudo apt update && sudo apt upgrade -y,
+          sudo apt update && sudo apt upgrade,
           mkdir /downloads && cd /downloads,
           wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz,
           zcat install-tl-unx.tar.gz | tar xf - ,
