@@ -26,7 +26,7 @@ jobs:
       - name: Set current datetime as env variable
         env:
           TZ: 'Asia/Tokyo' # タイムゾーン指定
-        run: echo "CURRENT_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+        run: echo "CURRENT_DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
 
       - uses: actions/checkout@v3
 
