@@ -37,4 +37,6 @@ jobs:
           zcat install-tl-unx.tar.gz | tar xf - 
           cd install-tl-???????? 
           sudo perl ./install-tl --scheme=small --no-interaction 
+          sudo /usr/local/texlive/????/bin/x86_64-linux/tlmgr install collection-langcjk collection-langjapanese
+          
 
