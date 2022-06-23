@@ -30,8 +30,8 @@ jobs:
           sudo apt update
           sudo apt upgrade
           sudo apt install perl
-          mkdir /downloads 
-          cd /downloads 
+          mkdir downloads 
+          cd downloads 
           wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz 
           # zcat install-tl-unx.tar.gz | tar xf - 
           # cd install-tl-* 
