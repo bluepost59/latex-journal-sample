@@ -27,6 +27,5 @@ jobs:
 
       - name: build TeXLive 2022
         run: |
-          sudo apt install -y perl,
-          echo perl installed
-
+          sudo apt update
+          sudo apt upgrade
