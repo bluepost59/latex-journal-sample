@@ -35,7 +35,6 @@ jobs:
           pwd
           wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz 
           zcat install-tl-unx.tar.gz | tar xf - 
-          ls -l install-tl-*
-          cd install-tl-* 
-          # perl ./install-tl --scheme=small --no-interaction 
+          cd install-tl-???????? 
+          perl ./install-tl --scheme=small --no-interaction 
 
