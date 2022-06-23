@@ -51,7 +51,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}_release
+          tag_name: ${{ github.ref }}-release
           release_name: Release ${{ github.ref }}
           body: |
             Changes in this Release
@@ -69,4 +69,3 @@ jobs:
           asset_path: ./test.pdf
           asset_name: test.pdf
           asset_content_type: application/pdf
-          
