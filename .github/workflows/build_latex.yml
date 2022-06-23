@@ -27,12 +27,13 @@ jobs:
 
       - name: build TeXLive 2022
         run: |
-          sudo apt-get update,
-          sudo apt-get upgrade,
-          mkdir /downloads && cd /downloads,
-          wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz,
-          zcat install-tl-unx.tar.gz | tar xf - ,
-          cd install-tl-* ,
-          perl ./install-tl --scheme=small --no-interaction,
+          sudo apt update,
+          # sudo apt update,
+          # sudo apt upgrade,
+          # mkdir /downloads && cd /downloads,
+          # wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz,
+          # zcat install-tl-unx.tar.gz | tar xf - ,
+          # cd install-tl-* ,
+          # perl ./install-tl --scheme=small --no-interaction,
           
 
