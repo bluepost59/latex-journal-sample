@@ -27,6 +27,7 @@ jobs:
 
       - name: build TeXLive 2022
         run: |
+          su -i,
           sudo apt update,
           sudo apt upgrade          
 
