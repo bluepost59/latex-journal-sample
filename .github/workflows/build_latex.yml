@@ -39,9 +39,31 @@ jobs:
           cd install-tl-???????? 
           sudo perl ./install-tl --scheme=small --no-interaction 
           sudo /usr/local/texlive/????/bin/x86_64-linux/tlmgr install collection-langcjk collection-langjapanese
+
       - name: build document
         run: |
           /usr/local/texlive/????/bin/x86_64-linux/platex test.tex
           /usr/local/texlive/????/bin/x86_64-linux/dvipdfmx test.dvi
           
+      - name: release pdf
+        uses: actions/create-release@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Changes in this Release
+            - First Change
+            - Second Change
+          draft: false
+          prerelease: false
 
+        - name: Upload Release 
+          uses: actions/upload-release-asset@v1.0.2
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            upload_url: ${{ steps.create_release.outputs.upload_url }}
+            asset_path: ./test.pdf
+            asset_name: test.pdf
