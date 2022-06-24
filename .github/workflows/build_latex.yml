@@ -43,8 +43,12 @@ jobs:
       - name: Build Document
         run: |
           /usr/local/texlive/????/bin/x86_64-linux/platex test.tex
+
+          # 式番号のためにもう一回ビルドする
+          /usr/local/texlive/????/bin/x86_64-linux/platex test.tex
           /usr/local/texlive/????/bin/x86_64-linux/dvipdfmx test.dvi
-          
+
+
       - name: Release PDF
         id: release_pdf
         uses: actions/create-release@v1.0.0
